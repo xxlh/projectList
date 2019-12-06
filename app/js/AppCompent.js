@@ -4,11 +4,12 @@ import SearchList from "./SearchList"
 import SearchBar from "./SearchBar"
 import SearchTabs from "./SearchTabs"
 import Item from "./Item"
-import ListView from "./ListView"
+// import ListView from "./ListView"
 import axios from "axios"
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import swal from 'sweetalert'
+import swal from 'sweetalert';
+import { ListView } from 'antd-mobile';
 
 
 
@@ -26,10 +27,70 @@ function getImageURL(SearchTitleArray){
 }
 SearchTitle = getImageURL(SearchTitle);
 
+function MyBody(props) {
+	return (
+	  <div className="am-list-body my-body">
+		<span style={{ display: 'none' }}>you can custom body wrap element</span>
+		{props.children}
+	  </div>
+	);
+  }
+
+const NUM_SECTIONS = 5;
+const NUM_ROWS_PER_SECTION = 5;
+let pageIndex = 0;
+
+const dataBlobs = {};
+let sectionIDs = [];
+let rowIDs = [];
+function genData(pIndex = 0) {
+	for (let i = 0; i < NUM_SECTIONS; i++) {
+	  const ii = (pIndex * NUM_SECTIONS) + i;
+	  const sectionName = `Section ${ii}`;
+	  sectionIDs.push(sectionName);
+	  dataBlobs[sectionName] = sectionName;
+	  rowIDs[ii] = [];
+  
+	  for (let jj = 0; jj < NUM_ROWS_PER_SECTION; jj++) {
+		const rowName = `S${ii}, R${jj}`;
+		rowIDs[ii].push(rowName);
+		dataBlobs[rowName] = rowName;
+	  }
+	}
+	sectionIDs = [...sectionIDs];
+	rowIDs = [...rowIDs];
+  }
+
+  const data = [
+	{
+	  img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
+	  title: 'Meet hotel',
+	  des: '不是所有的兼职汪都需要风吹日晒',
+	},
+	{
+	  img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
+	  title: 'McDonald\'s invites you',
+	  des: '不是所有的兼职汪都需要风吹日晒',
+	},
+	{
+	  img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
+	  title: 'Eat the week',
+	  des: '不是所有的兼职汪都需要风吹日晒',
+	},
+  ];
 
 class AppCompent extends React.Component{
 	constructor(porps){
 		super(porps);
+
+		const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
+    	const getRowData = (dataBlob, sectionID, rowID) => dataBlob[rowID];
+		const dataSource = new ListView.DataSource({
+			getRowData,
+			getSectionHeaderData: getSectionData,
+			rowHasChanged: (row1, row2) => row1 !== row2,
+			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
+		  });
 		this.handleKeyword = this.handleKeyword.bind(this);
 		this.handlesearch = this.handlesearch.bind(this);
 		// this.handleScroll = this.handleScroll.bind(this);
@@ -41,10 +102,41 @@ class AppCompent extends React.Component{
 			page: 1,
 			article: [],//文章列表
 			total:0,
+			dataSource:dataSource,
+			isLoading: true,
+			height: document.documentElement.clientHeight * 3 / 4,
 		};
 	}
 	
-
+	componentDidMount() {
+		const hei =990;
+		//  document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
+		this.getData(1,this.state.searchkeyword);
+		// setTimeout(() => {
+		//   genData();
+		//   this.setState({
+		// 	dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+		// 	isLoading: false,
+		// 	height: hei,
+		//   });
+		// }, 600);
+	  }
+	
+	
+	
+	  onEndReached = (event) => {
+		if (this.state.isLoading && !this.state.hasMore) {
+		  return;
+		}
+		console.log('reach end', event);
+		this.setState({ isLoading: true });
+		var page = this.state.page + 1;
+        console.log(page)
+		this.setState({page: page});
+        this.getData(page,this.state.searchkeyword);
+	
+	  }
+	
 	handleKeyword(e){
         this.setState({
 			keyword: e.target.value
@@ -55,29 +147,10 @@ class AppCompent extends React.Component{
 	handlesearch(value) {
 		this.setState({page: 1});
 		document.querySelector('.img-sec').scrollTop=0;
-		// alert('Your favorite flavor is: ' + value);
 		this.setState({searchkeyword: value});
 		this.getData(1,value) 
 	}
 
- 
-    componentDidMount() {//组件被加载之后，默认加载第一页数据
-        this.getData(1,this.state.searchkeyword);
-    }
-    onRefresh(){//下拉刷新函数
-        this.setState({page: 1});
-        this.getData(this.state.page,this.state.searchkeyword);
-    }
-    onLoadMore() {//加载更多函数
-        var page = this.state.page + 1;
-        console.log(page)
-		this.setState({page: page});
-		//var isTotal=this.state.total/5===page;
-        this.getData(page,this.state.searchkeyword);
-    }
-    getItem(article) {
-        return <Item key={article.id} article={article}/>;
-    }
     getData(page,searchWord) {//获取数据的函数
 		var self = this;
 		var data={};
@@ -87,17 +160,21 @@ class AppCompent extends React.Component{
 		axios.post('https://eexx.me/sina/api/public/?s=Projects.getList',data).then(function(response){
 			if(response.data.ret == 200 ){
 				if (response.data.data.page == 1) {//如果是第一页，直接覆盖之前的数据
-					self.setState({article: response.data.data.items,total:response.data.data.total})
+					genData();
+					self.setState({
+						dataSource: self.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+						isLoading: false,
+						// height: hei,
+					});
 				  //父组件的setState  改变的自己的状态的同时触发了自组件的componentWillReceiveProps
 				   // 子组件可以在componentWillReceiveProps里接受新的参数，改变自己的state会自动触发render渲染
 				} else {
-					self.setState({//否则累加数组
-						article: self.state.article.concat(response.data.data.items),
-						total:response.data.data.total
-					})
+					genData(++pageIndex);
+					self.setState({
+						dataSource: self.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+						isLoading: false,
+					});
 				}
-				if(response.data.data.total<=page*5)
-				document.querySelector('.scroll-loading').innerHTML="到底了"
 			}else{
 				swal(response.data.msg);
 			}
@@ -120,7 +197,34 @@ class AppCompent extends React.Component{
 		tabs=<Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}><TabList>{tabList}</TabList>{tabPanelList}</Tabs>
 		};
 		
-		
+	
+		let index = data.length - 1;
+		const row = (rowData, sectionID, rowID) => {
+		  if (index < 0) {
+			index = data.length - 1;
+		  }
+		  const obj = data[index--];
+		  return (
+			<div key={rowID} style={{ padding: '0 15px' }}>
+			  <div
+				style={{
+				  lineHeight: '50px',
+				  color: '#888',
+				  fontSize: 18,
+				  borderBottom: '1px solid #F6F6F6',
+				}}
+			  >{obj.title}</div>
+			  <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
+				<img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
+				<div style={{ lineHeight: 1 }}>
+				  <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
+				  <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>35</span>¥ {rowID}</div>
+				</div>
+			  </div>
+			</div>
+		  );
+		};
+	
 		return(
 			<section className="page">
 				<SearchBar keyChange={this.state.keyword} bindChange={this.handleKeyword} searchSubmit={this.handlesearch}/>
@@ -130,14 +234,29 @@ class AppCompent extends React.Component{
 						{tabs}
 					</section>
 					<section className="img-sec">
-					<ListView 
-						onRefresh={this.onRefresh.bind(this)}  //从外面传进去的下拉刷新回调函数
-						onLoadMore={this.onLoadMore.bind(this)}//从外面传进去的加载更过回调函数
-						article={this.state.article}//从外面传进去的文章列表数据数组
-						total={this.state.total}//总数
-						searchkeyword={this.state.searchkeyword}//总数
-						getItem={this.getItem.bind(this)} //从外面传进去的获取列表子项的回调函数
-							/>
+					  <ListView
+						ref={el => this.lv = el}
+						dataSource={this.state.dataSource}
+						// renderHeader={() => <span>header</span>}
+						renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+						{this.state.isLoading ? 'Loading...' : 'Loaded'}
+						</div>)}
+						renderSectionHeader={sectionData => (
+						<div>{`Task ${sectionData.split(' ')[1]}`}</div>
+						)}
+						renderBodyComponent={() => <MyBody />}
+						renderRow={row}
+						// renderSeparator={separator}
+						style={{
+						height: this.state.height,
+						overflow: 'auto',
+						}}
+						pageSize={4}
+						onScroll={() => { console.log('scroll'); }}
+						scrollRenderAheadDistance={500}
+						onEndReached={this.onEndReached}
+						onEndReachedThreshold={10}
+					/>	
 					 </section>
 				</section>
 			</section>
