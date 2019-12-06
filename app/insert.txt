@@ -1,0 +1,46 @@
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '安踏:爱不止步，点亮未来', '', 'http://n.sinaimg.cn/fj/anta/index.html', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '厦门卫计委:你有控吗？', '', 'http://n.sinaimg.cn/fj/smoking/test.html', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '建发:建发绿跑在行动 10元装走阿拉善', '', 'http://it.mn.sina.com/project/2018als/index.html', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '建发:守卫蓝色星球 绿跑在行动', '', 'http://common.mn.sina.com.cn/activity/jsonp/516/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '厦门市委政法委：“五安”工程', '', 'http://n.sinaimg.cn/fj/creatsafexm/index.html', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '政府：2018厦门工业博览会', '', 'http://common.mn.sina.com.cn/activity/jsonp/520/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '龙湖:龙湖', '', 'http://common.mn.sina.com.cn/activity/jsonp/521/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '房产:2017微博房产海西V影响力楼盘 你会票选谁？', '', 'http://common.mn.sina.com.cn/activity/jsonp/513/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '建发:建发绿跑在行动', '', 'http://common.mn.sina.com.cn/activity/jsonp/512/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '兴业银行:#大清理财Style#中国好老板的选择，3种员工专属理财服务任性挑', '', 'http://common.mn.sina.com.cn/activity/jsonp/512/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+INSERT INTO `projects` (`id`, `title`, `imgurl`, `link`, `tags`, `deline`, `tag`) VALUES (NULL, '九牧:韩雪 @你来参加深蹲挑战', '', 'http://common.mn.sina.com.cn/activity/jsonp/518/index', '重力感应,视频', '2018','');
+
+
+
+
+INSERT INTO `projects` (`title`, `link`, `tags`, `dateline`, `tag`) VALUES ( '做一回泉州人','http://it.mn.sina.com/project/zyhqzr/index.php','政府旅游,政府,人脸识别,泉州基因测试', 2018,'2018做一回泉州人政府旅游政府人脸识别泉州基因测试');
+INSERT INTO `projects` (`title`, `link`, `tags`, `dateline`, `tag`) VALUES ( '厦门BRT·我们这十年',  'http://common.mn.sina.com.cn/act/jsonp/36/index', '政府,BRT,十年,厦门BRT,留言', 2018,'2018厦门BRT·我们这十年政府BRT十年厦门BRT留言');
+INSERT INTO `projects` (`title`, `link`, `tags`, `dateline`, `tag`) VALUES ( '叻趣大挑战！',  'http://n.sinaimg.cn/fj/lequxia/index6.html', '运营,图片合成,叻趣,海岛,露营节,叻趣海岛露营节', 2018,'2018叻趣大挑战运营图片合成叻趣海岛露营节叻趣海岛露营节');
+INSERT INTO `projects` ( `title`, `link`, `tags`, `dateline`, `tag`) VALUES ( '世界名画去巴黎',  'http://common.mn.sina.com.cn/activity/jsonp/524/index', '厦航,厦门航空,世界名画去巴黎,视频,戏精,巴黎,世界,名画,国企,政府,旅游,国企', 2018,'2018厦航厦门航空世界名画去巴黎视频戏精巴黎世界名画国企政府旅游国企');
+INSERT INTO `projects` ( `title`, `link`, `tags`, `dateline`, `tag`) VALUES ('#防骗知识局#  一招制骗，拒绝上当',  'http://common.mn.sina.com.cn/activity/jsonp/526/index', '政府,答题,抽奖,防骗知识局,一招制骗，拒绝上当,防骗', 2018,'2018政府答题抽奖防骗知识局一招制骗拒绝上当防骗#防骗知识局#  一招制骗，拒绝上当');
+INSERT INTO `projects` ( `title`, `link`, `tags`, `dateline`, `tag`) VALUES ('微笑守护','http://common.mn.sina.com.cn/activity/jsonp/525/index','KA,九牧王,投票,视频,图片合成,人脸识别,微笑守护,贵州', 2018,'2018KA九牧王投票视频图片合成人脸识别微笑守护贵州');
+INSERT INTO `projects` ( `title`, `link`, `tags`, `dateline`, `tag`) VALUES ( '小海豚爱心图书馆第六季|听听我的好奇心','http://common.mn.sina.com.cn/activity/jsonp/528/index','自有IP,爱心图书馆,图片合成,捐书,音频,小海豚,第六季,好奇心,奇思妙想', 2018,'2018自有IP爱心图书馆图片合成捐书音频小海豚第六季好奇心奇思妙想小海豚爱心图书馆第六季|听听我的好奇心');
+
+
+

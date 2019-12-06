@@ -1,0 +1,7 @@
+1、微博分享接口：http://it.mn.sina.com/public/sendweibo.php
+text（内容）
+img（图片链接）
+
+2、公用浏览量接口：http://it.mn.sina.com/public/browse.php
+提交:projectid (整型数字，项目ID)
+数据库的表：public_browse

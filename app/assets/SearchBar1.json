@@ -1,0 +1,44 @@
+[	
+	{"labletitle":"功能",
+	 "data":[
+		{"title":"答题"},
+		{"title":"报名"},
+		{"title":"投票"},
+		{"title":"抽奖"},
+		{"title":"游戏"},
+		{"title":"视频"},
+		{"title":"重力感应"},
+		{"title":"图片合成"},
+		{"title":"纯展示"}
+	 ]
+	},
+	{"labletitle":"行业",
+		"data":[
+			{"title":"KA"},
+			{"title":"金融"},
+			{"title":"政府"},
+			{"title":"房产"},
+			{"title":"运营"},
+			{"title":"自有IP"}
+		]
+	},
+	{"labletitle":"客户",
+		"data":[
+			{"title":"安踏"},
+			{"title":"九 牧"},
+			{"title":"九牧王"},
+			{"title":"建发"},
+			{"title":"贵人鸟"},
+			{"title":"厦航"},
+			{"title":"喜力"}
+		]
+	},
+	{"labletitle":"时间",
+		"data":[
+			{"title":"2019"},
+			{"title":"2018"},
+			{"title":"2017"},
+			{"title":"2016"}
+		]
+	}
+]
