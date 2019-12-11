@@ -5,9 +5,9 @@ import Item from "./Item"
 import qs from 'qs';
 import axios from "axios"
 import 'react-tabs/style/react-tabs.css';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import SearchTabs from './SearchTabs';
 import swal from 'sweetalert';
-import { ListView,  SearchBar } from 'antd-mobile';
+import { ListView,  SearchBar, PullToRefresh } from 'antd-mobile';
 import { runInThisContext } from "vm";
 
 function MyBody(props) {
@@ -50,16 +50,13 @@ function genData(pIndex = 0) {
 class AppCompent extends React.Component{
 	constructor(porps){
 		super(porps);
-		const getSectionData = (dataBlob, sectionID) => dataBlob[sectionID];
-    	const getRowData = (dataBlob, sectionID, rowID) => dataBlob[rowID];
+	
 		const dataSource = new ListView.DataSource({
-			getRowData,
-			getSectionHeaderData: getSectionData,
 			rowHasChanged: (row1, row2) => row1 !== row2,
-			sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
 		  });
+
 		// this.handleKeyword = this.handleKeyword.bind(this);
-		// this.handlesearch = this.handlesearch.bind(this);
+		this.handlesearch = this.handlesearch.bind(this);
 		
 		this.state = {
 			keyword: [],
@@ -70,33 +67,45 @@ class AppCompent extends React.Component{
 			total:0,
 			dataSource:dataSource,
 			isLoading: true,
+			refreshing: true,
+			hasMore: true,
 			height: document.documentElement.clientHeight * 3 / 4,
 		};
 	}
 	
 	componentDidMount() {
-		const hei =990;
-		//  document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
-		genData();
-		this.getData(1,this.state.searchkeyword);
+		this.getData(this.state.page, this.state.searchkeyword);
 	  }
 	
-	
-	
-	  onEndReached = (event) => {
-		if (!this.state.isLoading && !this.state.hasMore) {
-		  return;
+	  onRefresh = () => {
+		  this.setState({
+			  page : 1 ,
+			  searchkeyword : "" ,
+		  })
+		this.getData(this.state.page, this.state.searchkeyword);
+	};
+
+	onEndReached = (event) => {
+		if (!this.state.hasMore) {
+			return;
 		}
+		this.setState({ isLoading: false });
 		this.setState({page: this.state.page + 1});
-		genData(++pageIndex);
         this.getData(this.state.page, this.state.searchkeyword);
 	
 	  }
 	
-
-	onSearch = (val) => {
-		// pageIndex = 0;
-		genData(++pageIndex);
+	
+	  onChange= (value) => {
+		this.setState({ searchkeyword: value});
+	  };
+	  clear = () => {
+		this.setState({ searchkeyword: '' });
+	  };
+	  handleClick = () => {
+		this.manualFocusInst.focus();
+	  }
+	  handlesearch = (val) => {
 		document.querySelector('.img-sec').scrollTop=0;
 		this.setState({
 		  page: 1,
@@ -116,26 +125,23 @@ class AppCompent extends React.Component{
 		axios.post('https://eexx.me/sina/api/public/?s=Projects.getList',qs.stringify(data)).then(function(response){
 			if(response.data.ret == 200 ){
 				if (response.data.data.page == 1) {//如果是第一页，直接覆盖之前的数据
-
 					self.setState({
-						article:[...response.data.data.items],
-						dataSource: self.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-						// isLoading: false,
-						// height: hei,
+						article:[...response.data.data.items]
 					});
-					console.log(self.state.article);
-					if(response.data.data.total <= page * pageSize)
-					self.setState({ isLoading: false });
 				} else {
-					
 					self.setState({
-						article:[...self.state.article,...response.data.data.items],
-						dataSource: self.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
-						// isLoading: false,
+						article:[...self.state.article, ...response.data.data.items],
 					});
-					if(response.data.data.total <= page * pageSize)
-					self.setState({ isLoading: false });
 				}
+				self.setState({
+					dataSource: self.state.dataSource.cloneWithRows(self.state.article),
+				});
+				if(response.data.data.total <= page * pageSize)
+					self.setState({ 
+						hasMore: false,
+						refreshing: false,
+						isLoading: false, 
+					});
 			}else{
 				swal(response.data.msg);
 			}
@@ -146,12 +152,8 @@ class AppCompent extends React.Component{
 	render(){
 		let index = 0;
 		const row = (rowData, sectionID, rowID) => {
-		  if (index >  this.state.article.length - 1) {
-			index = 0;
-		  }
-		  const obj = this.state.article[index++];
 		  return (
-			<div key={rowID} style={{ padding: '0 15px' }}><a href={obj.link}>
+			<div key={rowID} style={{ padding: '0 15px' }}><a href={rowData.link}>
 			  <div
 				style={{
 				  lineHeight: '50px',
@@ -159,11 +161,11 @@ class AppCompent extends React.Component{
 				  fontSize: 18,
 				  borderBottom: '1px solid #F6F6F6',
 				}}
-			  >{obj.title}</div>
+			  >{rowData.title}</div>
 			  <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
-				<img style={{ height: '64px', marginRight: '15px' }} src={obj.imgurl} alt="" />
+				<img style={{ height: '64px', marginRight: '15px' }} src={rowData.imgurl} alt="" />
 				<div style={{ lineHeight: 2 }}>
-				  <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.tags}</div>
+				  <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{rowData.tags}</div>
 				  {/* <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>35</span>¥ {rowID}</div> */}
 				</div>
 			  </div>
@@ -175,12 +177,17 @@ class AppCompent extends React.Component{
 		return(
 			<section className="page">
 				 <SearchBar
-					value={this.state.searchkeyword}
-					placeholder="Search"
-					onChange={this.onSearch}
-					onClear={() => { console.log('onClear'); }}
-					onCancel={() => { console.log('onCancel'); }}
+				 	value={this.state.searchkeyword}
+					 placeholder="Search"
+					 onSubmit={value => this.handlesearch(value)}
+					 onClear={value => this.handlesearch(value)}
+					 onFocus={() => console.log('onFocus')}
+					 onBlur={() => console.log('onBlur')}
+					 onCancel={value => this.handlesearch("")}
+					 showCancelButton
+					 onChange={this.onChange}
 					/>
+					<SearchTabs/>
 				<section className="stage" ref="stage">
 					<section className="img-sec">
 					  <ListView
@@ -188,7 +195,7 @@ class AppCompent extends React.Component{
 						dataSource={this.state.dataSource}
 						// renderHeader={() => <span>header</span>}
 						renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-						{this.state.isLoading ? 'Loading...' : 'Loaded'}
+						{this.state.isLoading ? 'Loading...' : (!this.state.hasMore&&'没有更多了~')}
 						</div>)}
 						renderBodyComponent={() => <MyBody />}
 						renderRow={row}
@@ -199,6 +206,10 @@ class AppCompent extends React.Component{
 						pageSize= { pageSize }
 						onScroll={() => { console.log('scroll'); }}
 						scrollRenderAheadDistance={500}
+						pullToRefresh={<PullToRefresh
+							refreshing={this.state.refreshing}
+							onRefresh={this.onRefresh}
+						/>}
 						onEndReached={this.onEndReached}
 						onEndReachedThreshold={10}
 					/>	
