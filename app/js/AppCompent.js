@@ -8,7 +8,6 @@ import 'react-tabs/style/react-tabs.css';
 import SearchTabs from './SearchTabs';
 import swal from 'sweetalert';
 import { ListView,  SearchBar, PullToRefresh } from 'antd-mobile';
-import { runInThisContext } from "vm";
 
 function MyBody(props) {
 	return (
@@ -122,7 +121,7 @@ class AppCompent extends React.Component{
 		data.page = page;
 		data.perpage = pageSize;
 		data.search=searchWord;
-		axios.post('https://eexx.me/sina/api/public/?s=Projects.getList',qs.stringify(data)).then(function(response){
+		axios.post('https://sina.ieexx.com/api/public/?s=Projects.getList',qs.stringify(data)).then(function(response){
 			if(response.data.ret == 200 ){
 				if (response.data.data.page == 1) {//如果是第一页，直接覆盖之前的数据
 					self.setState({
