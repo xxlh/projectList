@@ -55,7 +55,7 @@ class AppCompent extends React.Component{
 		  });
 
 		// this.handleKeyword = this.handleKeyword.bind(this);
-		this.handlesearch = this.handlesearch.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
 		
 		this.state = {
 			keyword: [],
@@ -104,8 +104,8 @@ class AppCompent extends React.Component{
 	  handleClick = () => {
 		this.manualFocusInst.focus();
 	  }
-	  handlesearch = (val) => {
-		document.querySelector('.img-sec').scrollTop=0;
+	  handleSearch = (val) => {
+		// document.querySelector('.img-sec').scrollTop=0;
 		this.setState({
 		  page: 1,
 		  searchkeyword: val,
@@ -178,15 +178,15 @@ class AppCompent extends React.Component{
 				 <SearchBar
 				 	value={this.state.searchkeyword}
 					 placeholder="Search"
-					 onSubmit={value => this.handlesearch(value)}
-					 onClear={value => this.handlesearch(value)}
+					 onSubmit={value => this.handleSearch(value)}
+					 onClear={value => this.handleSearch(value)}
 					 onFocus={() => console.log('onFocus')}
 					 onBlur={() => console.log('onBlur')}
-					 onCancel={value => this.handlesearch("")}
+					 onCancel={value => this.handleSearch("")}
 					 showCancelButton
 					 onChange={this.onChange}
 					/>
-					<SearchTabs/>
+					<SearchTabs hotSubmit = {value => this.handleSearch(value)}/>
 				<section className="stage" ref="stage">
 					<section className="img-sec">
 					  <ListView
