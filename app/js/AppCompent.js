@@ -69,7 +69,7 @@ class AppCompent extends React.Component{
 			isLoading: true,
 			refreshing: true,
 			hasMore: true,
-			height: document.documentElement.clientHeight * 3 / 4,
+			height: document.documentElement.clientHeight * 2 / 3,
 		};
 	}
 	
@@ -167,7 +167,7 @@ class AppCompent extends React.Component{
 				  borderBottom: '1px solid #F6F6F6',
 				}}
 			  >{rowData.title}</div>
-			  <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
+			  <div style={{ display: '-webkit-box', display: 'flex', padding: '.15rem 0' }}>
 				<img style={{ height: '64px', marginRight: '15px' }} src={rowData.imgurl} alt="" />
 				<div style={{ lineHeight: 2 }}>
 				  <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{rowData.tags}</div>

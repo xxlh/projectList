@@ -59,12 +59,12 @@ class SearchTabs extends React.Component{
 			>
 			{
 			this.state.tabTitle.map((tab,index) =>
-				<div key = {index} style={{ display: 'flex', padding: '20px', flexDirection: 'row', flexWrap: 'wrap', backgroundColor: '#fff' }}>
+				<div key = {index} style={{ display: 'flex', padding: '0.2rem', flexDirection: 'row', flexWrap: 'wrap', backgroundColor: '#fff' }}>
 				{
 					this.state.tags.filter((item) =>
 						item[tab.title]
 					).map((tagItem,index) => 
-					<div key = {index} style={{width:'60px', height:'15px', margin: '5px',textAlign:'center', fontSize:'15px'}} 
+					<div key = {index} style={{width:'1.7rem', margin: '0.2remx',textAlign:'center', fontSize:'15px'}} 
 						onClick={this.back.bind(this,tagItem[tab.title])}>{tagItem[tab.title]}</div>
 					)
 				}

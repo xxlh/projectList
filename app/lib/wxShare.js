@@ -8,8 +8,8 @@ class wxShare{
         var nonceStr;
         var timestamp;
         var url = document.location.href;
-        // var geturl = "http://common.mn.sina.com.cn/public/activity/weixin/shara_jssdk/jsoncall.php?rnd="+Math.random();
-        var geturl = "http://it.mn.sina.com/public/weixin/shara_jssdk/jsoncall.php?callback=?&rnd="+Math.random();
+        var geturl = "http://common.mn.sina.com.cn/public/activity/weixin/shara_jssdk/jsoncall.php?rnd="+Math.random();
+        // var geturl = "http://it.mn.sina.com/public/weixin/shara_jssdk/jsoncall.php?callback=?&rnd="+Math.random();
         // Ajax.getJSON(geturl + '&url=' + encodeURIComponent(url), function(json){
         Ajax.getJSON(geturl + '&url=' +encodeURIComponent(url), function(json){
             signature = json.signature;
