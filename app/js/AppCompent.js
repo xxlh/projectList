@@ -82,8 +82,7 @@ class AppCompent extends React.Component{
 			  page : 1 ,
 			  searchkeyword : "" ,
 			//   hotKeyword : "" ,
-		  })
-		this.getData(1, this.state.hotKeyword);
+		  },() => this.getData(this.state.page, this.state.hotKeyword));
 	};
 
 	onEndReached = (event) => {
@@ -92,9 +91,11 @@ class AppCompent extends React.Component{
 		}
 		let page = this.state.page + 1;
 		this.setState({ isLoading: false });
-		this.setState({page: page});
-        this.getData(page, this.state.hotKeyword);
-	
+		this.setState({page: this.state.page + 1},
+			()=>{ console.log("page:" + this.state.page)
+				this.getData(this.state.page, this.state.hotKeyword)});
+				console.log("page:" + this.state.page);
+				this.getData(this.state.page, this.state.hotKeyword)
 	  }
 	
 	
@@ -108,7 +109,6 @@ class AppCompent extends React.Component{
 		this.manualFocusInst.focus();
 	  }
 	  handleSearch = (val) => {
-		document.querySelector('.img-sec').scrollTop=0;
 		this.lv.scrollTo(0,0)
 		this.setState({
 			hasMore: true,
@@ -116,9 +116,8 @@ class AppCompent extends React.Component{
 			isLoading: true, 
 			page: 1,
 			hotKeyword: val,
-		});
-		console.log(val)
-		this.getData(1, val);
+		}, () => this.getData(this.state.page, this.state.hotKeyword));
+		
 	  }
 
 	  
