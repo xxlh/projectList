@@ -14,7 +14,7 @@ class SearchTabs extends React.Component{
 			tabTitle : [],
 			tags : [],
 		}
-		this.back = this.back.bind(this);
+		// this.back = this.back.bind(this);
 	}
 	back=(val)=>{// 子组件的点击事件
 		this.props.hotSubmit(val) // 这个changeData()就是激活父组件的方法，可以传值
@@ -63,7 +63,10 @@ class SearchTabs extends React.Component{
 				{
 					this.state.tags.filter((item) =>
 						item[tab.title]
-					).map((tagItem,index) =>   <div key = {index} style={{width:'60px', height:'15px', margin: '5px',textAlign:'center', fontSize:'15px'}} onClick={this.back}>{tagItem[tab.title]}</div>)
+					).map((tagItem,index) => 
+					<div key = {index} style={{width:'60px', height:'15px', margin: '5px',textAlign:'center', fontSize:'15px'}} 
+						onClick={this.back.bind(this,tagItem[tab.title])}>{tagItem[tab.title]}</div>
+					)
 				}
 				</div>
 			)

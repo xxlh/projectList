@@ -61,6 +61,7 @@ class AppCompent extends React.Component{
 			keyword: [],
 			tabIndex: 0,
 			searchkeyword:'',
+			hotKeyword : "" ,
 			page: 1,
 			article: [],//文章列表
 			total:0,
@@ -73,24 +74,26 @@ class AppCompent extends React.Component{
 	}
 	
 	componentDidMount() {
-		this.getData(this.state.page, this.state.searchkeyword);
+		this.getData(1, this.state.hotKeyword);
 	  }
 	
 	  onRefresh = () => {
 		  this.setState({
 			  page : 1 ,
 			  searchkeyword : "" ,
+			//   hotKeyword : "" ,
 		  })
-		this.getData(this.state.page, this.state.searchkeyword);
+		this.getData(1, this.state.hotKeyword);
 	};
 
 	onEndReached = (event) => {
 		if (!this.state.hasMore) {
 			return;
 		}
+		let page = this.state.page + 1;
 		this.setState({ isLoading: false });
-		this.setState({page: this.state.page + 1});
-        this.getData(this.state.page, this.state.searchkeyword);
+		this.setState({page: page});
+        this.getData(page, this.state.hotKeyword);
 	
 	  }
 	
@@ -105,13 +108,17 @@ class AppCompent extends React.Component{
 		this.manualFocusInst.focus();
 	  }
 	  handleSearch = (val) => {
-		// document.querySelector('.img-sec').scrollTop=0;
+		document.querySelector('.img-sec').scrollTop=0;
+		this.lv.scrollTo(0,0)
 		this.setState({
-		  page: 1,
-		  searchkeyword: val,
+			hasMore: true,
+			refreshing: true,
+			isLoading: true, 
+			page: 1,
+			hotKeyword: val,
 		});
 		console.log(val)
-		this.getData(this.state.page, val);
+		this.getData(1, val);
 	  }
 
 	  
