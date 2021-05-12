@@ -62,7 +62,7 @@
     "jquery": "^3.4.1",
     "jsencrypt": "^3.0.0-rc.1",
     "judgebrowser": "^1.0.0",
-    "mathjs": "^5.1.2",
+    "mathjs": "^7.5.1",
     "mime-types": "^2.1.18",
     "node-jsencrypt": "^1.0.0",
     "preloader": "^4.0.2",
